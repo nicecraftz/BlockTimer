@@ -1,26 +1,13 @@
 package tech.nicecraftz.blocktimer.timedblock;
 
-import lombok.Data;
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.block.Block;
 
-@Data
-public class TimedBlock {
-    private final Material material;
-    private final Location location;
-    private final long placeTimestamp;
-
-    public TimedBlock(Material material, Location location) {
-        this.material = material;
-        this.location = location;
-        placeTimestamp = System.currentTimeMillis();
-    }
+public record TimedBlock(Material material, Location location, long placeTimestamp) {
 
     public TimedBlock(Block block) {
-        this.material = block.getBlockData().getMaterial();
-        this.location = block.getLocation();
-        placeTimestamp = System.currentTimeMillis();
+        this(block.getBlockData().getMaterial(), block.getLocation(), System.currentTimeMillis());
     }
 
     public boolean hasExpired(int timeInSeconds) {
