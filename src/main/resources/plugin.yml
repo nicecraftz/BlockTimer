@@ -1,0 +1,11 @@
+name: BlockTimer
+main: tech.nicecraftz.blocktimer.BlockTimer
+version: 1.0.0
+api-version: "1.19"
+description: Timed Blocks on Minecraft
+authors: [ nicecraftz ]
+website: https://nicecraftz.tech
+prefix: BlockTimer
+
+depend: [ "WorldGuard" ]
+

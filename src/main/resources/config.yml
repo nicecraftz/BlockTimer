@@ -1,0 +1,7 @@
+reloaded: "<green>Config reloaded!"
+timed-blocks:
+  flag-name: "timed-blocks" # state flag (allow, deny)
+  default-time: 5 # in seconds
+  blocks:
+    - "OBSIDIAN:10"
+    - "DIAMOND_BLOCK:10"
