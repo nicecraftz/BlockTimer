@@ -8,6 +8,7 @@ import org.codemc.worldguardwrapper.flag.WrappedState;
 import tech.nicecraftz.blocktimer.commands.BlockTimerCommand;
 import tech.nicecraftz.blocktimer.listeners.BlockListener;
 import tech.nicecraftz.blocktimer.timedblock.TimedBlockManager;
+import tech.nicecraftz.blocktimer.timedblock.TimedBlockTask;
 
 import java.util.Optional;
 
@@ -38,7 +39,7 @@ public final class BlockTimer extends JavaPlugin {
 
         getServer().getCommandMap().register("blocktimer", new BlockTimerCommand(this));
         getServer().getPluginManager().registerEvents(new BlockListener(this), this);
-        getServer().getScheduler().runTaskTimer(this, timedBlockManager, 0, 1);
+        getServer().getScheduler().runTaskTimer(this, new TimedBlockTask(timedBlockManager), 0, 1);
 
         getLogger().info("BlockTimer fully enabled!");
     }

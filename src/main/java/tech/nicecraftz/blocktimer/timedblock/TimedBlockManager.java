@@ -10,7 +10,7 @@ import java.util.Iterator;
 import java.util.List;
 
 @RequiredArgsConstructor
-public class TimedBlockManager implements Runnable {
+public class TimedBlockManager {
     private final FileConfiguration config;
     private final EnumMap<Material, Integer> materialTimeMap = new EnumMap<>(Material.class);
     private final List<TimedBlock> timedBlockList = Lists.newArrayList();
@@ -30,14 +30,13 @@ public class TimedBlockManager implements Runnable {
         timedBlockList.add(timedBlock);
     }
 
-    @Override
-    public void run() {
+    public void tick() {
         Iterator<TimedBlock> iterator = timedBlockList.iterator();
         while (iterator.hasNext()) {
             TimedBlock timedBlock = iterator.next();
-            int time = materialTimeMap.getOrDefault(timedBlock.getMaterial(), config.getInt("timed-blocks.default-time"));
+            int time = materialTimeMap.getOrDefault(timedBlock.material(), config.getInt("timed-blocks.default-time"));
             if (timedBlock.hasExpired(time)) {
-                timedBlock.getLocation().getBlock().setType(Material.AIR);
+                timedBlock.location().getBlock().setType(Material.AIR);
                 iterator.remove();
             }
         }
